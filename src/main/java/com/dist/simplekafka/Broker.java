@@ -4,7 +4,7 @@ import java.util.Objects;
 
 final class Broker {
     private final int id;
-    private final String host;
+    private final String host; //key=value;
     private final int port;
 
     Broker(int id, String host, int port) {

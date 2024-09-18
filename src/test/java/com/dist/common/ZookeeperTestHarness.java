@@ -8,7 +8,7 @@ import org.junit.Before;
 import java.util.Collections;
 
 public class ZookeeperTestHarness {
-    protected final String zkConnectAddress =
+    protected final String zookeeperAddress =
             "127.0.0.1:" + TestUtils.choosePort();
     //choose random port to allow multiple tests to run together
 
@@ -23,10 +23,11 @@ public class ZookeeperTestHarness {
 
     @Before
     public void setUp() throws Exception {
-        zookeeper = new EmbeddedZookeeper(zkConnectAddress);
-        zkClient = new ZkClient(zkConnectAddress, zkSessionTimeout, zkConnectionTimeout, new ZKStringSerializer());
+        zookeeper = new EmbeddedZookeeper(zookeeperAddress);
+        zkClient = new ZkClient(zookeeperAddress, zkSessionTimeout, zkConnectionTimeout, new ZKStringSerializer());
         config = testConfig();
-        zookeeperClient = new ZookeeperClient(config);
+        zookeeperClient = new ZookeeperClient(config); //represents a client
+        // used on a broker.
 
     }
 
@@ -38,7 +39,7 @@ public class ZookeeperTestHarness {
 
     protected Config testConfig() {
         return new Config(1, new Networks().hostname(),
-                TestUtils.choosePort(), zkConnectAddress,
+                TestUtils.choosePort(), zookeeperAddress,
                 Collections.singletonList(TestUtils.tempDir().getAbsolutePath()));
     }
 

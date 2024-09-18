@@ -35,9 +35,10 @@ public class ZookeeperClient {
 
 
     public void registerBroker(Broker broker) {
-        String brokerData = JsonSerDes.toJson(broker);
-        String brokerPath = getBrokerPath(broker.id());
+        String brokerValue = JsonSerDes.toJson(broker);
+        String brokerKey = getBrokerPath(broker.id());
         //TODO: Create Ephemeral Path with this data.
+        createEphemeralPath(zkClient, brokerKey, brokerValue);
     }
 
     public Set<Broker> getAllBrokers() {

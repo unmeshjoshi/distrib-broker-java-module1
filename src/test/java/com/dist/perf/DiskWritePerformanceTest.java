@@ -60,7 +60,7 @@ public class DiskWritePerformanceTest {
         while (Instant.now().isBefore(endTime)) {
             os.write(data);
             os.flush();
-
+            //crash at this point..
             syncToPhysicalMedia(os);
 
             numberOfWrites++;
