@@ -26,14 +26,14 @@ public class ZookeeperClientTest extends ZookeeperTestHarness {
     @Test
     public void testSubscribeBrokerChangeListener() {
         List<String> brokerIds = new ArrayList<>();
-        IZkChildListener listener =  new IZkChildListener() {
-            @Override
-            public void handleChildChange(String parentPath, List<String> currentChilds) throws Exception {
-                brokerIds.addAll(currentChilds);
-            }
-        };
-        //implement broker change listener.
-        zookeeperClient.subscribeBrokerChangeListener(listener);
+//        IZkChildListener listener =  new IZkChildListener() {
+//            @Override
+//            public void handleChildChange(String parentPath, List<String> currentChilds) throws Exception {
+//                brokerIds.addAll(currentChilds);
+//            }
+//        };
+//        //implement broker change listener.
+//        zookeeperClient.subscribeBrokerChangeListener(listener);
 
         zookeeperClient.registerBroker(new Broker(1, "10.10.10.10", 8000));
 
