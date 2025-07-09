@@ -25,6 +25,18 @@ public class DiskWritePerformanceTest {
         PerformanceMetrics metrics = performWriteTest(perfFile, data, DURATION_IN_SECONDS);
 
         printMetrics(metrics);
+        deleteFile(perfFile);
+    }
+
+    private static void deleteFile(File perfFile ) {
+        boolean delete = perfFile.delete();
+        System.out.println("File deletion status: " + delete);
+        File parentDir = perfFile.getParentFile();
+        if (parentDir != null && parentDir.isDirectory()) {
+            boolean dirDelete = parentDir.delete();
+            System.out.println("Directory deletion status: " + dirDelete);
+        }
+        System.out.println("Clean up completed.");
     }
 
     private static byte[] createData(int size) {
