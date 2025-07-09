@@ -27,12 +27,12 @@ public class Networks {
         this("");
     }
 
-    public String hostname()  {
+    public String hostname() {
         try {
             return ipv4Address().getHostAddress();
 
         } catch (Exception e) {
-          throw new RuntimeException(e);
+            throw new RuntimeException(e);
         }
     }
 

@@ -1,10 +1,11 @@
 package com.dist.common;
 
-import org.apache.zookeeper.server.ZooKeeperServer;
 import org.apache.zookeeper.server.NIOServerCnxnFactory;
+import org.apache.zookeeper.server.ZooKeeperServer;
+
 import java.io.File;
-import java.net.InetSocketAddress;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 
 public class EmbeddedZookeeper {
     private final String connectString;

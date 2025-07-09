@@ -2,7 +2,9 @@
 
 ## **Project Overview**
 
-This project demonstrates **Kafka group membership** concepts using ZooKeeper for distributed coordination. It serves as an educational tool for understanding how distributed systems like Apache Kafka manage cluster membership, service discovery, and coordination.
+This project demonstrates **Kafka group membership** concepts using ZooKeeper for distributed coordination. It serves as
+an educational tool for understanding how distributed systems like Apache Kafka manage cluster membership, service
+discovery, and coordination.
 
 ## **🎯 Learning Objectives**
 
@@ -39,6 +41,7 @@ distrib-broker-java-module1/
 ## **✅ Currently Implemented Features**
 
 ### **Core Components**
+
 - **Broker Registration**: Ephemeral nodes in ZooKeeper (`/brokers/ids/{broker_id}`)
 - **Broker Discovery**: Listing and retrieving active brokers
 - **Change Notifications**: Event-driven broker membership changes
@@ -46,12 +49,14 @@ distrib-broker-java-module1/
 - **Thread-Safe Operations**: Concurrent access handling with caching
 
 ### **Performance Analysis Tools**
+
 - **Disk I/O Performance**: Throughput and latency measurement
 - **Queuing Theory**: M/M/1 queue analysis and Little's Law
 - **Universal Scalability Law**: Scalability analysis with contention modeling
 - **System Performance**: Realistic performance degradation modeling
 
 ### **Testing Infrastructure**
+
 - **Unit Tests**: Comprehensive test coverage for core functionality
 - **Integration Tests**: Multi-broker scenarios with failure simulation
 - **Performance Tests**: Load testing and throughput saturation analysis
@@ -60,12 +65,14 @@ distrib-broker-java-module1/
 ## **🔧 Key Improvements Made**
 
 ### **1. Enhanced ZookeeperClient**
+
 - **Thread-Safe Caching**: Concurrent access to broker information
 - **Comprehensive Error Handling**: Proper exception management and logging
 - **Graceful Shutdown**: Clean resource cleanup
 - **Detailed Documentation**: Javadoc comments explaining functionality
 
 ### **2. Robust Session Management**
+
 - **Automatic Re-registration**: Handles ZooKeeper session expiry
 - **Cache Invalidation**: Proper cache management on session renewal
 - **Connection State Monitoring**: Detailed state change logging
@@ -73,6 +80,7 @@ distrib-broker-java-module1/
 ## **🚀 Getting Started**
 
 ### **Prerequisites**
+
 - Java 11+ and Gradle
 - Python 3.7+ (for performance analysis)
 - ZooKeeper (embedded version included)
@@ -110,17 +118,21 @@ distrib-broker-java-module1/
 ## **📊 Performance Analysis**
 
 ### **Disk I/O Analysis**
+
 The project includes comprehensive disk performance testing:
+
 - **Throughput Measurement**: MB/s write performance
 - **Latency Analysis**: Write operation timing
 - **Durability Trade-offs**: Impact of `fsync()` on performance
 
 ### **Queuing Theory Application**
+
 - **Little's Law**: L = λW relationship analysis
 - **M/M/1 Queue**: Service rate vs. arrival rate modeling
 - **System Capacity**: Overload detection and management
 
 ### **Universal Scalability Law**
+
 - **Contention Modeling**: σ (serialization) parameter
 - **Coherency Costs**: κ (crosstalk) parameter
 - **Optimal Concurrency**: Finding the sweet spot
@@ -128,22 +140,26 @@ The project includes comprehensive disk performance testing:
 ## **🔄 Kafka Group Membership Concepts**
 
 ### **Broker Membership**
+
 - **Service Discovery**: How brokers find each other
 - **Ephemeral Nodes**: Automatic cleanup on failure
 - **Change Notifications**: Event-driven membership updates
 
 ### **Consumer Groups**
+
 - **Group Coordination**: Managing consumer memberships
 - **Partition Assignment**: Distributing work among consumers
 - **Rebalancing**: Handling consumer joins/leaves
 
 ### **Recommended Reading**
+
 - **"Designing Data-Intensive Applications"** by Martin Kleppmann
 - **"Systems Performance"** by Brendan Gregg
 - **Kafka Documentation**: https://kafka.apache.org/documentation/
 - **ZooKeeper Guide**: https://zookeeper.apache.org/doc/
 
 ### **Concepts to Explore**
+
 - **Distributed Consensus**: Raft, Paxos algorithms
 
 **Happy Learning! 🎓**

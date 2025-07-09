@@ -28,7 +28,7 @@ public class DiskWritePerformanceTest {
         deleteFile(perfFile);
     }
 
-    private static void deleteFile(File perfFile ) {
+    private static void deleteFile(File perfFile) {
         boolean delete = perfFile.delete();
         System.out.println("File deletion status: " + delete);
         File parentDir = perfFile.getParentFile();
@@ -68,7 +68,7 @@ public class DiskWritePerformanceTest {
     private static long writeUntil(Instant endTime, File file, byte[] data) throws IOException {
         long numberOfWrites = 0;
         FileOutputStream os =
-                     new FileOutputStream(file);
+                new FileOutputStream(file);
         while (Instant.now().isBefore(endTime)) {
             os.write(data);
             os.flush();

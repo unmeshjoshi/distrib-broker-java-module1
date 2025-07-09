@@ -2,48 +2,61 @@
 
 ## **Course Overview**
 
-This course focuses on the **fundamental concepts** of Kafka group membership using ZooKeeper for distributed coordination. Participants will learn core distributed systems patterns through hands-on implementation of broker discovery, registration, and change notification systems.
+This course focuses on the **fundamental concepts** of Kafka group membership using ZooKeeper for distributed
+coordination. Participants will learn core distributed systems patterns through hands-on implementation of broker
+discovery, registration, and change notification systems.
 
 ## **Assignment 1: Disk Performance Analysis** ✅ *Already Implemented*
 
 ### **Objective**
+
 Understand storage I/O impact on distributed systems and why durability guarantees affect performance.
 
 ### **Background**
-Distributed systems like Kafka must balance performance with durability. Understanding disk I/O characteristics is crucial for designing high-performance distributed systems that can guarantee data persistence.
+
+Distributed systems like Kafka must balance performance with durability. Understanding disk I/O characteristics is
+crucial for designing high-performance distributed systems that can guarantee data persistence.
 
 ### **Tasks**
+
 1. **Run Performance Tests**:
    ```bash
    ./gradlew run --args="com.dist.perf.DiskWritePerformanceTest"
    ```
 
 2. **Analyze Different Scenarios**:
-   - Run tests with and without `fsync()` calls
-   - Compare buffered vs unbuffered writes
-   - Measure throughput degradation with durability guarantees
+    - Run tests with and without `fsync()` calls
+    - Compare buffered vs unbuffered writes
+    - Measure throughput degradation with durability guarantees
 
 3. **Performance Analysis**:
-   - Calculate writes per second and MB/s throughput
-   - Analyze the relationship between durability and performance
-   - Document the trade-offs between speed and data safety
+    - Calculate writes per second and MB/s throughput
+    - Analyze the relationship between durability and performance
+    - Document the trade-offs between speed and data safety
 
 ### **Learning Outcomes**
+
 - Understand I/O bottlenecks in distributed systems
 - Learn trade-offs between performance and durability
 - Analyze system performance characteristics under load
 - Apply performance measurement techniques
+
 ---
 
 ## **Assignment 2: Queuing Theory Analysis** ✅ *Already Implemented*
 
 ### **Objective**
-Apply queuing theory and mathematical models to understand system performance characteristics and predict behavior under load.
+
+Apply queuing theory and mathematical models to understand system performance characteristics and predict behavior under
+load.
 
 ### **Background**
-Distributed systems behavior can be modeled using queuing theory. Understanding Little's Law, M/M/1 queues, and the Universal Scalability Law helps predict system performance and identify bottlenecks.
+
+Distributed systems behavior can be modeled using queuing theory. Understanding Little's Law, M/M/1 queues, and the
+Universal Scalability Law helps predict system performance and identify bottlenecks.
 
 ### **Tasks**
+
 1. **Queuing Theory Analysis**:
    ```bash
    cd src/main/python
@@ -59,19 +72,19 @@ Distributed systems behavior can be modeled using queuing theory. Understanding 
    ```bash
    python universal_scalability_law.py
    ```
-   
+
 4. **Custom Analysis**:
-   - Modify service rates and analyze different scenarios
-   - Compare ideal vs realistic system behavior
-   - Identify system saturation points
+    - Modify service rates and analyze different scenarios
+    - Compare ideal vs realistic system behavior
+    - Identify system saturation points
 
 5. **Real-World Application**:
-   - Apply these models to Kafka broker scenarios
-   - Predict performance under different load patterns
-   - Design capacity planning recommendations
-
+    - Apply these models to Kafka broker scenarios
+    - Predict performance under different load patterns
+    - Design capacity planning recommendations
 
 ### **Learning Outcomes**
+
 - Understand Little's Law and queue behavior
 - Learn to predict system performance under varying loads
 - Analyze scalability limits using mathematical models
@@ -80,17 +93,23 @@ Distributed systems behavior can be modeled using queuing theory. Understanding 
 ## **Assignment 3: Implement Broker Registration** ✅ *Partially Implemented*
 
 ### **Objective**
-Complete and enhance the ZooKeeper-based broker registration system with robust error handling, retry logic, and comprehensive monitoring.
+
+Complete and enhance the ZooKeeper-based broker registration system with robust error handling, retry logic, and
+comprehensive monitoring.
 
 ### **Background**
-Service registration is a fundamental pattern in distributed systems. Brokers must register themselves in ZooKeeper using ephemeral nodes that automatically clean up when the broker fails.
+
+Service registration is a fundamental pattern in distributed systems. Brokers must register themselves in ZooKeeper
+using ephemeral nodes that automatically clean up when the broker fails.
 
 ### **Current Implementation Status**
-Nede to complete the following tasks:
- - Complete the existing `registerBroker()` method by creating an ephemeral node.
 
+Nede to complete the following tasks:
+
+- Complete the existing `registerBroker()` method by creating an ephemeral node.
 
 #### **3.1 Optional - Enhanced Error Handling**
+
 Improve the existing `registerBroker()` method:
 
 ```java
@@ -126,24 +145,32 @@ public void registerBroker(Broker broker) {
     }
 }
 ```
+
 ### **Learning Outcomes**
+
 - Understand ephemeral nodes and ZooKeeper session management
 - Learn distributed system failure patterns and recovery strategies
 - Implement robust error handling and retry mechanisms
 - Design monitoring and observability for distributed services
+
 ---
 
 ## **Assignment 4: Advanced Broker Change Notifications** ✅ *Partially Implemented*
 
 ### **Objective**
-Implement an event-driven system for detecting and handling broker membership changes with efficient change detection and proper cleanup.
+
+Implement an event-driven system for detecting and handling broker membership changes with efficient change detection
+and proper cleanup.
 
 ### **Background**
-In distributed systems, components must react to membership changes efficiently. This requires implementing the "list-and-watch" pattern to avoid race conditions and ensure eventual consistency.
+
+In distributed systems, components must react to membership changes efficiently. This requires implementing the "
+list-and-watch" pattern to avoid race conditions and ensure eventual consistency.
 
 ### **Tasks**
 
 #### **4.1 Enhanced Change Listener**
+
 Implement a sophisticated broker change listener:
 
 ```java
@@ -201,6 +228,7 @@ public class BrokerChangeListener implements IZkChildListener {
 ```
 
 #### **4.2 Observer Pattern Implementation**
+
 Create an observer system for broker changes:
 
 ```java
@@ -218,19 +246,24 @@ public class BrokerMembershipManager {
 ```
 
 #### **4.3 Race Condition Prevention**
+
 Implement the "list-and-watch" pattern:
+
 - Get initial broker list before setting up watches
 - Handle the race condition between listing and watching
 - Ensure consistency between local cache and ZooKeeper state
 
 #### **4.4 Comprehensive Testing**
+
 Create extensive tests:
+
 - Test broker addition/removal scenarios
 - Test rapid membership changes
 - Test network partitions and reconnections
 - Test observer notification reliability
 
 ### **Learning Outcomes**
+
 - Learn to handle dynamic membership changes efficiently
 - Implement observer patterns in distributed systems
 - Handle race conditions and consistency issues
@@ -243,39 +276,45 @@ Create extensive tests:
 ### **Recommended Learning Path**
 
 **Week 1: Foundation & Performance Analysis**
+
 - **Assignment 1**: Disk Performance Analysis
 - **Assignment 2**: Queuing Theory Analysis
 - Focus: Understanding system performance characteristics
 
 **Week 2: Distributed Coordination**
+
 - **Assignment 3**: Enhanced Broker Registration
 - **Assignment 4**: Advanced Broker Change Notifications
 - Focus: ZooKeeper-based coordination and event-driven architecture
-
 
 ## **Learning Outcomes**
 
 By completing these four assignments, participants will demonstrate:
 
 ### **Core Distributed Systems Concepts**
+
 - **Service Discovery**: How distributed components find each other
 - **Membership Management**: Handling dynamic cluster membership
 - **Failure Detection**: Recognizing and responding to component failures
 - **Event-Driven Architecture**: Reactive programming patterns
 
 ### **ZooKeeper Coordination Patterns**
+
 - **Ephemeral Nodes**: Automatic cleanup and failure detection
 - **Watches**: Event notification mechanisms
 - **Session Management**: Connection lifecycle and recovery
 
 ### **Performance Engineering**
+
 - **I/O Analysis**: Understanding storage bottlenecks
 - **Queuing Theory**: Modeling system behavior under load
 - **Scalability Analysis**: Predicting system limits
 - **Performance Measurement**: Systematic benchmarking approaches
 
 ---
+
 ### **Debugging Tips**
+
 - **ZooKeeper Issues**: Check embedded ZooKeeper startup in test logs
 - **Connection Problems**: Verify port availability and firewall settings
 - **Performance Variations**: Run tests multiple times for consistent results
@@ -284,6 +323,7 @@ By completing these four assignments, participants will demonstrate:
 ---
 
 ### **Essential Reading**
+
 - **"Designing Data-Intensive Applications"** by Martin Kleppmann (Chapters 5, 8, 9)
 - **"Patterns Of Distributed Systems"** by Unmesh Joshi and Martin Fowler (Chapter 1 & 2)
 - **Apache Kafka Documentation**: https://kafka.apache.org/documentation/

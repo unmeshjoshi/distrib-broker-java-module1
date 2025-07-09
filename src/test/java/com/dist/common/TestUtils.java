@@ -10,6 +10,7 @@ import java.util.Random;
 public class TestUtils {
 
     private static final Random random = new Random();
+    private static final long DEFAULT_MAX_WAIT_MS = 1000;
 
     public static String hostName() {
         return new Networks().hostname();
@@ -77,15 +78,13 @@ public class TestUtils {
         return f;
     }
 
-    private static final long DEFAULT_MAX_WAIT_MS = 1000;
-
     /**
      * Wait until the given condition is true or throw an exception if the given wait time elapses.
      *
-     * @param condition condition to check
-     * @param msg error message
+     * @param condition  condition to check
+     * @param msg        error message
      * @param waitTimeMs maximum time to wait and retest the condition before failing the test
-     * @param pause delay between condition checks
+     * @param pause      delay between condition checks
      */
     public static void waitUntilTrue(Condition condition, String msg, long waitTimeMs, long pause) {
         long startTime = System.currentTimeMillis();

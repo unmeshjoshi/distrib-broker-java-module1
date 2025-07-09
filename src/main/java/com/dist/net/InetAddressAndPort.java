@@ -10,15 +10,15 @@ public class InetAddressAndPort implements Comparable<InetAddressAndPort> {
     private Integer port;
 
     //for jaxon
-    private InetAddressAndPort() {}
+    private InetAddressAndPort() {
+    }
 
     public InetAddressAndPort(InetAddress address, Integer port) {
         this.address = address;
         this.port = port;
     }
 
-    public static InetAddressAndPort create(String hostIp, Integer port)
-    {
+    public static InetAddressAndPort create(String hostIp, Integer port) {
         try {
             return new InetAddressAndPort(InetAddress.getByName(hostIp), port);
         } catch (UnknownHostException e) {
@@ -55,16 +55,16 @@ public class InetAddressAndPort implements Comparable<InetAddressAndPort> {
 
     @Override
     public String toString() {
-       return "[" +
-                   address.getHostAddress() +
-               "," +
-                   port +
-               ']';
+        return "[" +
+                address.getHostAddress() +
+                "," +
+                port +
+                ']';
     }
 
     @Override
     public int compareTo(InetAddressAndPort other) {
         int i = this.address.toString().compareTo(other.address.toString());
-        return i == 0? Integer.compare(port, other.port) : i;
+        return i == 0 ? Integer.compare(port, other.port) : i;
     }
 }

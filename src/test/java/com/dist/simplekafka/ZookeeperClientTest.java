@@ -2,13 +2,13 @@ package com.dist.simplekafka;
 
 import com.dist.common.TestUtils;
 import com.dist.common.ZookeeperTestHarness;
-import org.I0Itec.zkclient.IZkChildListener;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
 
 //Assignment3 - Implement RegisterBroker method
 //Assignment4 - Implement BrokerChangeListener.

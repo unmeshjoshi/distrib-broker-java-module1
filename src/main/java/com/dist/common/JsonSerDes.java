@@ -8,12 +8,11 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.dataformat.cbor.CBORFactory;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.dataformat.cbor.CBORFactory;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 import java.io.IOException;
-import java.util.List;
 
 
 public class JsonSerDes {

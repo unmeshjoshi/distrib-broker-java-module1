@@ -1,6 +1,7 @@
 # Broker Demo with ZooKeeper - Step by Step Guide
 
-This guide demonstrates how to run the broker registration demo using ZooKeeper and shows how to inspect the ZooKeeper data structure.
+This guide demonstrates how to run the broker registration demo using ZooKeeper and shows how to inspect the ZooKeeper
+data structure.
 
 ## Prerequisites
 
@@ -17,6 +18,7 @@ docker run --rm --name zookeeper-demo -p 2181:2181 zookeeper:3.8.1
 ```
 
 This command:
+
 - `--rm`: Automatically remove the container when it stops
 - `--name zookeeper-demo`: Name the container for easy reference
 - `-p 2181:2181`: Map port 2181 from container to host
@@ -26,19 +28,23 @@ This command:
 
 ## Step 2: Start Broker Applications
 
-Open **new terminal windows** for each broker. You can run multiple brokers simultaneously to see the watch mechanism in action.
+Open **new terminal windows** for each broker. You can run multiple brokers simultaneously to see the watch mechanism in
+action.
 
 ### Terminal 2: Start Broker 1
+
 ```bash
 ./gradlew run --args="localhost:2181 1"
 ```
 
 ### Terminal 3: Start Broker 2
+
 ```bash
 ./gradlew run --args="localhost:2181 2"
 ```
 
 ### Terminal 4: Start Broker 3 (optional)
+
 ```bash
 ./gradlew run --args="localhost:2181 3"
 ```
@@ -48,11 +54,13 @@ Open **new terminal windows** for each broker. You can run multiple brokers simu
 Open another terminal window to inspect what's happening in ZooKeeper:
 
 ### Connect to ZooKeeper Container
+
 ```bash
 docker exec -it zookeeper-demo /bin/bash
 ```
 
 ### Navigate to ZooKeeper CLI
+
 ```bash
 cd bin
 ./zkCli.sh
@@ -82,16 +90,19 @@ ls -R /brokers/ids
 ## Expected Output
 
 ### When you run `ls /brokers/ids`:
+
 ```
 [1, 2, 3]
 ```
 
 ### When you run `get /brokers/ids/1`:
+
 ```
 {"id":1,"host":"192.168.1.100","port":9093}
 ```
 
 ### When you run `ls -R /brokers/ids`:
+
 ```
 /brokers/ids
 /brokers/ids/1
@@ -168,7 +179,9 @@ To stop the demo:
 ## Troubleshooting
 
 ### Port Already in Use
+
 If you get "port already in use" error:
+
 ```bash
 # Check what's using port 2181
 lsof -i :2181
@@ -178,7 +191,9 @@ kill -9 <PID>
 ```
 
 ### Docker Container Issues
+
 If the ZooKeeper container fails to start:
+
 ```bash
 # Check Docker logs
 docker logs zookeeper-demo
@@ -191,7 +206,9 @@ docker run --rm --name zookeeper-demo -p 2181:2181 zookeeper:3.8.1
 ```
 
 ### Connection Refused
+
 If brokers can't connect to ZooKeeper:
+
 1. Make sure ZooKeeper is running: `docker ps | grep zookeeper-demo`
 2. Check if port 2181 is accessible: `telnet localhost 2181`
 3. Verify ZooKeeper is ready: `echo ruok | nc localhost 2181` (should return "imok")

@@ -3,23 +3,21 @@ package com.dist.simplekafka;
 import com.dist.common.Config;
 import com.dist.common.JsonSerDes;
 import com.dist.common.ZKStringSerializer;
-import com.fasterxml.jackson.core.type.TypeReference;
 import org.I0Itec.zkclient.IZkChildListener;
-import org.I0Itec.zkclient.IZkDataListener;
 import org.I0Itec.zkclient.IZkStateListener;
 import org.I0Itec.zkclient.ZkClient;
 import org.I0Itec.zkclient.exception.ZkNoNodeException;
-import org.I0Itec.zkclient.exception.ZkNodeExistsException;
 import org.apache.log4j.Logger;
 import org.apache.zookeeper.Watcher;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 public class ZookeeperClient {
-    private static final Logger logger = Logger.getLogger(ZookeeperClient.class);
-
     public static final String BrokerIdsPath = "/brokers/ids";
-
+    private static final Logger logger = Logger.getLogger(ZookeeperClient.class);
     private final ZkClient zkClient;
     private final Config config;
 
@@ -28,6 +26,7 @@ public class ZookeeperClient {
         zkClient = new ZkClient(config.getZkConnect(), config.getZkSessionTimeoutMs(), config.getZkConnectionTimeoutMs(), new ZKStringSerializer());
         zkClient.subscribeStateChanges(new SessionExpireListener());
     }
+
     public void registerSelf() {
         Broker broker = new Broker(config.getBrokerId(), config.getHostName(), config.getPort());
         registerBroker(broker);
@@ -92,8 +91,7 @@ public class ZookeeperClient {
         }
 
         @Override
-        public void handleNewSession() throws Exception
-        {
+        public void handleNewSession() throws Exception {
             logger.info("re-registering broker info in ZK for broker " + config.getBrokerId());
             registerSelf();
             logger.info("done re-registering broker");
